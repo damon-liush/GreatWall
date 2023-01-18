@@ -1,0 +1,77 @@
+#!/bin/bash
+#
+#analysis-size tools
+#liush.damon@gmail.com
+#
+set -e
+
+TARGET_DIR=.
+LOG_FILE=file_size.log
+FILTER_VALUE=10
+FILTER_OPT=3
+
+show_help()
+{
+	printf "\n analysis-size tools\n"
+	echo "Valid Options:"
+	echo "  -h  Show help message"
+#	echo "  -f log file name, default name : file_szie.log"
+	echo "  -s Threshold value, if -s 1000, means print value > 1000, default value : 10"
+	echo "  -o option: text, dada, bss , default: bss"
+	echo "  -d scan dir, deault: ."
+	printf "\n"
+	echo "example:"
+	echo "./analysis-size -f log_file.log -s 1000 -o bss -d ."
+	printf "\n\n"
+}
+
+RECURSIVE_CHECK()
+{
+    for element in `ls $1`
+    do  
+        FILE_PATH=$1"/"$element
+        if [ -d $FILE_PATH ];then 
+            RECURSIVE_CHECK $FILE_PATH
+        else
+		if [ "${FILE_PATH##*.}"x = "o"x ];then
+#			echo $FILE_PATH
+			size $FILE_PATH >> size.log.tp
+		fi
+        fi  
+    done
+}
+
+while getopts d:f:s:o: OPTION; do
+	case $OPTION in
+	d)
+		TARGET_DIR=$OPTARG
+		;;
+
+	s)
+		FILTER_VALUE=$OPTARG
+		;;
+	o)
+		if [ "x$OPTARG" == "xbss" ]; then
+			FILTER_OPT=3
+		elif [ "x$OPTARG" == "xdata" ];then
+			FILTER_OPT=2
+		else
+			FILTER_OPT=1
+		fi
+		;;
+	*)
+		show_help
+		exit $?
+		;;
+	esac
+done
+
+#echo "CMD:$0 ""-d "$TARGET_DIR "-f "$LOG_FILE "-s "$FILTER_VAULE "-o "$FILTER_OPT
+
+RECURSIVE_CHECK $TARGET_DIR
+head -1 size.log.tp > res.tp
+cat size.log.tp | grep ".o\>" > _size.log.tp
+cat _size.log.tp  | awk -F ' ' '$"'$FILTER_OPT'">'"$FILTER_VALUE"'{print $0}' >> res.tp
+#cat _size.log.tp  | awk -F ' ' '$3>50000{print $0}' >> res.tp
+cat res.tp
+rm size.log.tp _size.log.tp res.tp
