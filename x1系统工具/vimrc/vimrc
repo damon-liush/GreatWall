@@ -1,0 +1,27 @@
+#############################################################################
+# file : .vimrc
+# author : liush
+# data : 2022-
+#
+##############################################################################
+"~/.vimrc
+"
+set hls
+set backspace=2
+
+call plug#begin('~/.vim/plugged')
+" Plugin outside ~/.vim/plugged with post-update hook
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+"Plug 'Valloric/YouCompleteMe'
+call plug#end()
+
+
+map <C-P> :Files<CR>
+map <C-C> :Buffers<CR>
+
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
