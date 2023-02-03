@@ -20,7 +20,7 @@ riscv-gnu-toolchain：git clone https://github.com/riscv-collab/riscv-gnu-toolch
 
 ```
 riscv-gnu-toolchain： sudo apt-get install autoconf automake autotools-dev curl python3 libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev ninja-build
-qemu: sudo apt-get install libglib2.0-dev
+qemu: sudo apt-get install libglib2.0-dev meson 
 ```
 
 ### 2.1 构建qemu
@@ -63,6 +63,12 @@ make linux
 cd buildroot
 make qemu_riscv64_virt_defconfig
 make
+```
+
+确认rootfs构建成功
+
+```
+
 ```
 
 ### 2
