@@ -20,7 +20,7 @@ riscv-gnu-toolchain：git clone https://github.com/riscv-collab/riscv-gnu-toolch
 
 ```
 riscv-gnu-toolchain： sudo apt-get install autoconf automake autotools-dev curl python3 libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev ninja-build
-qemu: sudo apt-get install libglib2.0-dev meson 
+qemu: sudo apt-get install libglib2.0-dev meson libpixman-1-dev
 ```
 
 ### 2.1 构建qemu
@@ -38,7 +38,9 @@ make install
 验证qemu安装成功
 
 ```
-
+/opt/qemu/bin/qemu-system-riscv64 --version
+QEMU emulator version 7.2.50 (v7.2.0-1089-g5736527050)
+Copyright (c) 2003-2022 Fabrice Bellard and the QEMU Project developers
 ```
 
 ### 2.2 构建工具链
