@@ -1,0 +1,36 @@
+创建REPO仓库
+
+1. 申请REPO仓库
+1.1 申请仓库文件夹:demo1
+1.2 申请demo1/manifest
+1.3 基于menifest申请所有git仓库
+
+2. 仓库本地操作
+2.1 将demo1下所有仓库切分支为demo-dev
+repo forall -c 'git checkout -b demo-dev'
+
+
+2.2 取消各个仓库lfs的处理
+查看所有仓库：repo forall -c 'echo $REPO_PROJECT'
+查看lfs操作的文件：repo forall -c 'git lfs ls-files'
+repo forall -c 'git lfs uninstall'
+repo forall -c 'echo  > .gitattributes'
+repo forall -c 'git lfs ls-files | sed -r 's/^.{13}//' > lfs-files.txt'
+repo forall -c 'while read line; do git rm --cached $line; done < lfs-files.txt'
+repo forall -c 'while read line; do git add $line; done < lfs-files.txt'
+repo forall -c 'git add .gitattributes'
+repo forall -c 'rm lfs-files.txt'
+repo forall -c 'git commit -s -m "unlfs" '
+
+2.3 将远程仓库添加到本地对应仓库
+## 每个仓库设置：
+repo forall -c 'git remote add ohos ssh://***:***/demo1/$REPO_PROJECT'
+
+2.4 向远程仓库推送
+repo forall -c 'git push ohos openharmony-master-20210817'
+
+
+
+
+如何建立repo镜像：
+参考andorid镜像：https://android.googlesource.com/mirror/manifest/+/082d69393ce247ee116f425995224a42f0e1e849/default.xml
