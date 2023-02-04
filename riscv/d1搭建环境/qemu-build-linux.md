@@ -50,13 +50,21 @@ cd riscv-gnu-toolchain
 mkdir build
 cd build
 ../configure --prefix=/opt/riscv64
-make linux
+sudo make linux
 ```
 
 验证工具链安装成功
 
 ```
-
+liush@liush-VirtualBox:~/workplace/damon-liush/temp/riscv-gnu-toolchain/build$ /opt/riscv64/bin/riscv64-unknown-linux-gnu-gcc -v
+Using built-in specs.
+COLLECT_GCC=/opt/riscv64/bin/riscv64-unknown-linux-gnu-gcc
+COLLECT_LTO_WRAPPER=/opt/riscv64/libexec/gcc/riscv64-unknown-linux-gnu/12.2.0/lto-wrapper
+Target: riscv64-unknown-linux-gnu
+Configured with: /home/liush/workplace/damon-liush/temp/riscv-gnu-toolchain/build/../gcc/configure --target=riscv64-unknown-linux-gnu --prefix=/opt/riscv64 --with-sysroot=/opt/riscv64/sysroot --with-pkgversion=g2ee5e430018 --with-system-zlib --enable-shared --enable-tls --enable-languages=c,c++,fortran --disable-libmudflap --disable-libssp --disable-libquadmath --disable-libsanitizer --disable-nls --disable-bootstrap --src=/home/liush/workplace/damon-liush/temp/riscv-gnu-toolchain/gcc --disable-multilib --with-abi=lp64d --with-arch=rv64imafdc --with-tune=rocket --with-isa-spec=2.2 'CFLAGS_FOR_TARGET=-O2   -mcmodel=medlow' 'CXXFLAGS_FOR_TARGET=-O2   -mcmodel=medlow'
+Thread model: posix
+Supported LTO compression algorithms: zlib
+gcc version 12.2.0 (g2ee5e430018) 
 ```
 
 ### 2.3 构建rootfs
@@ -70,24 +78,31 @@ make
 确认rootfs构建成功
 
 ```
-
+$ cd images/
+$ ls
+fw_dynamic.bin  fw_dynamic.elf  fw_jump.bin  fw_jump.elf  Image  rootfs.ext2  rootfs.tar  start-qemu.shiush@liush-VirtualBox:~/workplace/damon-liush/temp/buildroot/output$ cd images/
+liush@liush-VirtualBox:~/workplace/damon-liush/temp/buildroot/output/images$ ls
+fw_dynamic.bin  fw_dynamic.elf  fw_jump.bin  fw_jump.elf  Image  rootfs.ext2  rootfs.tar  start-qemu.sh
 ```
 
-### 2
+### 3 . 构建脚本
 
-### u
+- 顶层脚本  
 
-git clone https://github.com/qemu/qemu.git
+- 内核脚本
 
-mkdir build
-cd build
-../configure
-make
+- rootfs脚本
 
-## 2. 下载社区内核
+- opensbi脚本
 
-## 3. 下载OpenSBI
+- qemu脚本
 
-## 4. 下载buildroot
+- tools脚本
+
+- 执行脚本
+
+### 4. 运行调试
+
+
 
 
