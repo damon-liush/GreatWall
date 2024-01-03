@@ -10,4 +10,5 @@ ref - https://zhuanlan.zhihu.com/p/83547768
 
 ref：[canary分析](https://hardenedlinux.github.io/2016/11/27/canary.html)
 
-
+## rtos移植 KASAN.
+ref:https://github.com/xairy/kernel-sanitizers
