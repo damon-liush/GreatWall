@@ -14,3 +14,8 @@ ref：[canary分析](https://hardenedlinux.github.io/2016/11/27/canary.html)
 ref:https://github.com/xairy/kernel-sanitizers 
 
 https://mcuoneclipse.com/2021/05/31/finding-memory-bugs-with-google-address-sanitizer-asan-on-microcontrollers/
+
+## stack dector
+CONFIG_STACKPROTECTOR =y
+CONFIG_STACKPROTECTOR_STRONG =y
+
