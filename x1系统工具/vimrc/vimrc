@@ -17,6 +17,12 @@ Plug 'junegunn/fzf.vim'
 "Plug 'Valloric/YouCompleteMe'
 call plug#end()
 
+## https://github.com/vim-scripts/taglist.vim
+map <F4> :TlistToggle<CR>
+let Tlist_Show_One_File=1
+let Tlist_WinWidth=30
+let Tlist_Exit_OnlyWindow=1
+let Tlist_Use_Left_Window=1
 
 map <C-P> :Files<CR>
 map <C-C> :Buffers<CR>
