@@ -17,6 +17,17 @@ Plug 'junegunn/fzf.vim'
 "Plug 'Valloric/YouCompleteMe'
 call plug#end()
 
+# https://github.com/preservim/nerdtree.git
+# branch：version 4.2.0
+map <F3> :NERDTreeMirror<CR>
+map <F3> :NERDTreeToggle<CR>
+
+let g:NERDTreeWinPos="right"
+let g:NERDTreeWinSize=25
+let g:NERDTreeShowLineNumbers=1
+let g:neocomplcache_enable_at_startup = 1
+
+
 ## https://github.com/vim-scripts/taglist.vim
 map <F4> :TlistToggle<CR>
 let Tlist_Show_One_File=1
