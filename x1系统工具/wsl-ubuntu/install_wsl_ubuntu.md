@@ -8,8 +8,10 @@
 ### 2.2 buildroot 中path问题
 
 1. 修改/etc/wsl.conf
-   [interop]                                                                                                                                                                                    enabled=false                                                                                                                                                                                appendWindowsPath=false
-3. powershell中重启wsl
+   [interop] 
+    enabled=false
+    appendWindowsPath=false
+2. powershell中重启wsl
     net stop LxssManager
     net start LxssManager
 
