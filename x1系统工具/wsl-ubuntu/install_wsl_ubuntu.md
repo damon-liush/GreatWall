@@ -5,6 +5,14 @@
 
 1. sudo vim /etc/hosts
 2. 文件最后添加一行：140.82.114.3 github.com
+### 2.2 buildroot 中path问题
+
+1. 修改/etc/wsl.conf
+   [interop]                                                                                                                                                                                    enabled=false                                                                                                                                                                                appendWindowsPath=false
+3. powershell中重启wsl
+    net stop LxssManager
+    net start LxssManager
+
 
 
 
