@@ -103,6 +103,12 @@ fw_dynamic.bin  fw_dynamic.elf  fw_jump.bin  fw_jump.elf  Image  rootfs.ext2  ro
 
 ### 4. 运行调试
 
+### 5. GDB调试
 
+```
+qemu-system-riscv32 -M virt -m 1G -smp 2 -bios fw_jump.elf -kernel Image -append "rootwait root=/dev/vda ro" -drive file=rootfs.ext2,format=raw,id=hd0 -device virtio-blk-device,drive=hd0 -netdev user,id=net0 -device virtio-net-device,netdev=net0 -nographic -S -s
+riscv32-unknown-linux-gnu-gdb --tui vmlinux
+- target remote localhost:1234
+```
 
 
